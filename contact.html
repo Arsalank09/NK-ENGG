@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nk Engineering</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Lightbox Pupup -->
+    <link rel="stylesheet" href="css/lightbox.css">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 5 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive-style.css">
+ </head>
+
+ <body style="background-image:  url(./images/banner/mainbanner.jpg);">
+         <!-- Navbar Section Start -->
+    <header id="full_nav">
+        <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="index.html">
+                        <h2 style=" color: #cdc712;  margin-top: 1rem;"> Nk Engineering</h2>
+
+                        <!-- <img decoding="async" src="./images/logo.png" alt=""> -->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                        aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <!-- <span class="navbar-toggler-icon"></span> -->
+                        <i class="fas fa-stream navbar-toggler-icon"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="main-nav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="index.html">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="product.html">Products</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="services.html">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class="header_right">
+                            <div class="text-lg-end">
+                                <span>Nk Engineering</span>
+                                <span class="Slogan">COMMITMENT TO SAFETY</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Navbar Section Exit -->
+
+
+
+ <br><br><br>
+
+    <div class="wrapper">
+        <h2>Contact us</h2>
+        <div id="error_message">
+           
+        </div>
+        <form action="" id="myform" name="submit-to-google-sheet" >
+            <div class="input_field">
+                <input type="text" placeholder="Name" name="Name" id="name">
+            </div>
+            <div class="input_field">
+                <input type="text" placeholder="Subject"  name="Subject"  id="subject">
+            </div>
+            <div class="input_field">
+                <input type="text" placeholder="Phone"  name="Phone"  id="phone">
+            </div>
+            <div class="input_field">
+                <input type="text" placeholder="Email"  name="Email"  id="email">
+            </div>
+            <div class="input_field">
+                <textarea placeholder="Message"  name="Message"  id="message"></textarea>
+            </div>
+            <div class="btn">
+                <input type="submit" name="submit" onclick="return validate();">
+            </div>
+           </form>
+      </div>
+      <script>
+        function validate(){
+  var name = document.getElementById("name").value;
+  var subject = document.getElementById("subject").value;
+  var phone = document.getElementById("phone").value;
+  var email = document.getElementById("email").value;
+  var message = document.getElementById("message").value;
+  var error_message = document.getElementById("error_message");
+  
+  error_message.style.padding = "10px";
+  
+  var text;
+  if(name.length < 2){
+    text = "Please Enter valid Name";
+    error_message.innerHTML = text;
+    return false;
+  }
+  if(subject.length < 6){
+    text = "Please Enter Correct Subject";
+    error_message.innerHTML = text;
+    return false;
+  }
+  if(isNaN(phone) || phone.length != 10){
+    text = "Please Enter valid Phone Number";
+    error_message.innerHTML = text;
+    return false;
+  }
+  if(email.indexOf("@") == -1 || email.length < 6){
+    text = "Please Enter valid Email";
+    error_message.innerHTML = text;
+    return false;
+  }
+  if(message.length <= 15){
+    text = "Please Enter More Than 140 Characters";
+    error_message.innerHTML = text;
+    return false;
+  }
+  alert("We will get back to you soon!");
+  return true;
+}
+
+
+//excel export
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxyer39S0Q0IXruTQhMCpd1BX198Uw0irCn3GMAktH8-TSxliGtzx_XY4ayAxLs4zzrtg/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  }) 
+      </script>
+
+      
+ 
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Lightbox Pupup -->
+    <script src="js/lightbox.js"></script>
+
+    <!-- Bootstrap 5 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+ </body>
+
+</html>
